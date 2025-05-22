@@ -1,4 +1,4 @@
-import TuiImageEditor  from '../index.js';
+import TuiImageEditor from '../index.js';
 
 export default {
   title: 'ImageEditor',

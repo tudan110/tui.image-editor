@@ -44,17 +44,20 @@ export default defineComponent({
       return tuiImageEditor.value;
     };
 
-    const invoke = (methodName, ...args) => {
-      let result = null;
-      if (editorInstance[methodName]) {
-        result = editorInstance[methodName](...args);
-      } else if (methodName.indexOf('.') > -1) {
-        const func = getMethod(editorInstance, methodName);
-        if (typeof func === 'function') {
-          result = func(...args);
-        }
+    const parseDotMethodName = (methodName) => {
+      const firstDotIdx = methodName.indexOf('.');
+      let firstMethodName = methodName;
+      let restMethodName = '';
+
+      if (firstDotIdx > -1) {
+        firstMethodName = methodName.substring(0, firstDotIdx);
+        restMethodName = methodName.substring(firstDotIdx + 1, methodName.length);
       }
-      return result;
+
+      return {
+        first: firstMethodName,
+        rest: restMethodName,
+      };
     };
 
     const getMethod = (instance, methodName) => {
@@ -76,24 +79,22 @@ export default defineComponent({
       return obj;
     };
 
-    const parseDotMethodName = (methodName) => {
-      const firstDotIdx = methodName.indexOf('.');
-      let firstMethodName = methodName;
-      let restMethodName = '';
-
-      if (firstDotIdx > -1) {
-        firstMethodName = methodName.substring(0, firstDotIdx);
-        restMethodName = methodName.substring(firstDotIdx + 1, methodName.length);
+    const invoke = (methodName, ...args) => {
+      let result = null;
+      if (editorInstance[methodName]) {
+        result = editorInstance[methodName](...args);
+      } else if (methodName.indexOf('.') > -1) {
+        const func = getMethod(editorInstance, methodName);
+        if (typeof func === 'function') {
+          result = func(...args);
+        }
       }
 
-      return {
-        first: firstMethodName,
-        rest: restMethodName,
-      };
+      return result;
     };
 
     onMounted(() => {
-      let options = props.options;
+      let { options } = props;
       if (props.includeUi) {
         options = Object.assign(includeUIOptions, props.options);
       }
