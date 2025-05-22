@@ -1,9 +1,16 @@
 {
   "name": "@tudan110/vue-image-editor",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "TOAST UI Image-Editor for Vue",
-  "main": "dist/toastui-vue-image-editor.js",
-  "module": "dist/toastui-vue-image-editor.mjs",
+  "type": "module",
+  "main": "./dist/toastui-vue-image-editor.js",
+  "module": "./dist/toastui-vue-image-editor.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/toastui-vue-image-editor.mjs",
+      "require": "./dist/toastui-vue-image-editor.js"
+    }
+  },
   "files": [
     "dist",
     "src"
