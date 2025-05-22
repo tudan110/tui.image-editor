@@ -1,9 +1,9 @@
 {
-  "name": "@toast-ui/vue-image-editor",
-  "version": "3.15.3",
+  "name": "@tudan110/vue-image-editor",
+  "version": "1.0.5",
   "description": "TOAST UI Image-Editor for Vue",
-  "main": "dist/toastui-vue-image-editor.cjs.js",
-  "module": "dist/toastui-vue-image-editor.es.js",
+  "main": "dist/toastui-vue-image-editor.js",
+  "module": "dist/toastui-vue-image-editor.mjs",
   "files": [
     "dist",
     "src"
