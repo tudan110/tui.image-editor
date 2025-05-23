@@ -8,8 +8,8 @@ export default defineConfig({
     lib: {
       entry: './src/index.js',
       name: 'ToastUIVueImageEditor',
-      fileName: 'toastui-vue-image-editor',
-      formats: ['es', 'cjs'],
+      fileName: (format) => `toastui-vue-image-editor.${format}.js`, // 输出文件名
+      formats: ['es', 'umd'],
     },
     rollupOptions: {
       external: ['vue', 'tui-image-editor'],
